@@ -1,18 +1,40 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   AIMUSE Design Tokens
+   ========================================================================== */
+:root {
+  --header-height: 76px;
+  --aimuse-purple: #6b46b8;
+  --aimuse-purple-deep: #3c2570;
+  --aimuse-deep-purple: #241141;
+  --aimuse-lavender: #d9cdf0;
+  --aimuse-lavender-pale: #f3eefb;
+  --aimuse-gold: #cf9a53;
+  --aimuse-gold-pale: #e7c68a;
+  --aimuse-white: #ffffff;
+  --aimuse-ink: #2a1c4d;
+  --aimuse-glow: rgba(168, 130, 255, 0.35);
+  --aimuse-glow-soft: rgba(207, 154, 83, 0.25);
+
+  --ease-silk: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  color-scheme: light;
+}
+
 @theme {
-  /* Refined luxury + Eastern elegance */
-  --font-display: "Noto Serif SC", "Source Han Serif CN", serif;
-  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --color-cream: #f8f6f1;
-  --color-cream-dark: #ebe7df;
-  --color-ink: #2c2420;
-  --color-ink-muted: #5c534d;
-  --color-gold: #b8860b;
-  --color-gold-light: #d4a84b;
-  --color-gold-muted: rgba(184, 134, 11, 0.15);
-  --color-burgundy: #6b2d3a;
-  --color-burgundy-muted: rgba(107, 45, 58, 0.08);
+  --color-aimuse-purple: #6b46b8;
+  --color-aimuse-purple-deep: #3c2570;
+  --color-aimuse-deep-purple: #241141;
+  --color-aimuse-lavender: #d9cdf0;
+  --color-aimuse-lavender-pale: #f3eefb;
+  --color-aimuse-gold: #cf9a53;
+  --color-aimuse-gold-pale: #e7c68a;
+  --color-aimuse-ink: #2a1c4d;
+
+  --font-display: "Cormorant Garamond", "Noto Serif JP", serif;
+  --font-heading: "Noto Serif JP", "Cormorant Garamond", serif;
+  --font-body: "Noto Sans JP", "Hiragino Sans", sans-serif;
 }
 
 * {
@@ -21,50 +43,543 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: var(--header-height);
+}
+
+/* The page navigator calculates exact section anchors. Disable the browser's
+   second snap pass so later sections with different content heights do not
+   receive an extra offset after the smooth scroll completes. */
+html.page-snap-enabled {
+  scroll-snap-type: none;
+}
+
+html.page-snap-enabled main > section {
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
 }
 
 body {
   margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
   font-family: var(--font-body);
-  background-color: var(--color-cream);
-  color: var(--color-ink);
+  color: var(--aimuse-ink);
+  background: #faf7fd;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-#root {
-  min-height: 100vh;
+main > section {
+  min-height: calc(100svh - var(--header-height));
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  scroll-margin-top: var(--header-height);
 }
 
-/* Stagger animation for sections */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
+main > section#home {
+  min-height: 100svh;
+}
+
+/* Desktop pages are designed as full-screen slides. Keep their outer boxes
+   identical so the page navigator always lands on the same visual baseline;
+   individual sections use xl-specific spacing to keep their contents inside
+   this viewport. */
+@media (min-width: 1280px) {
+  main > section {
+    height: calc(100svh - var(--header-height));
+    min-height: calc(100svh - var(--header-height));
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  main > section#home {
+    height: 100svh;
+    min-height: 100svh;
   }
 }
 
-.animate-fade-up {
-  animation: fadeUp 0.7s ease-out forwards;
+@media (max-width: 767px) {
+  :root {
+    --header-height: 64px;
+  }
 }
 
-.animate-delay-1 { animation-delay: 0.1s; }
-.animate-delay-2 { animation-delay: 0.2s; }
-.animate-delay-3 { animation-delay: 0.3s; }
-.animate-delay-4 { animation-delay: 0.4s; }
-.animate-delay-5 { animation-delay: 0.5s; }
-.animate-delay-6 { animation-delay: 0.6s; }
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
 
-.opacity-0 {
-  opacity: 0;
+  main > section {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  margin: 0;
+}
+
+p {
+  margin: 0;
 }
 
 .font-display {
   font-family: var(--font-display);
+}
+
+/* ==========================================================================
+   Aurora background system
+   ========================================================================== */
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  background: linear-gradient(180deg, #faf7fd 0%, #f5eefb 40%, #f7f0fa 100%);
+}
+
+.aurora-bg__blob {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.aurora-bg__blob--1 {
+  width: 46vw;
+  height: 46vw;
+  top: -12vw;
+  left: -10vw;
+  background: radial-gradient(circle, rgba(168, 130, 255, 0.45), transparent 70%);
+}
+
+.aurora-bg__blob--2 {
+  width: 40vw;
+  height: 40vw;
+  top: 10vw;
+  right: -12vw;
+  background: radial-gradient(circle, rgba(207, 154, 83, 0.3), transparent 70%);
+}
+
+.aurora-bg__blob--3 {
+  width: 50vw;
+  height: 50vw;
+  bottom: -20vw;
+  left: 20vw;
+  background: radial-gradient(circle, rgba(233, 176, 224, 0.35), transparent 70%);
+}
+
+.aurora-bg__silk {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.6) 45%, transparent 60%);
+  background-size: 200% 200%;
+}
+
+.aurora-bg__stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 15% 20%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1.5px 1.5px at 75% 15%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 45% 60%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1.5px 1.5px at 85% 70%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 25% 85%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1.5px 1.5px at 60% 40%, rgba(255,255,255,0.7), transparent);
+  background-repeat: no-repeat;
+}
+
+@keyframes aurora-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(4vw, 5vw) scale(1.08); }
+}
+@keyframes aurora-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-5vw, 4vw) scale(1.1); }
+}
+@keyframes aurora-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-3vw, -4vw) scale(1.05); }
+}
+@keyframes aurora-silk {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 200%; }
+}
+@keyframes aurora-twinkle {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ==========================================================================
+   Light ribbon
+   ========================================================================== */
+.light-ribbon {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.light-ribbon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.light-ribbon__path {
+  stroke-dasharray: 6 14;
+  animation: none;
+}
+
+@keyframes ribbon-flow {
+  to { stroke-dashoffset: -200; }
+}
+
+/* ==========================================================================
+   Glass card
+   ========================================================================== */
+.glow-card {
+  position: relative;
+  /* Slightly higher opacity + a much lighter blur than the original 18px: with 40-60
+     of these on one long page, backdrop-filter is the single biggest GPU/CPU cost on
+     this site, especially while the aurora background behind them is also animating
+     (every card has to re-sample a moving backdrop every frame). 6px keeps a readable
+     frosted edge at a fraction of the compositing cost. */
+  background: rgba(255, 255, 255, 0.72);
+  /* Keep the cards translucent without forcing the browser to resample the
+     fixed aurora layer for every card on every frame. */
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 20px 60px -25px rgba(107, 70, 184, 0.35), 0 2px 0 0 rgba(207, 154, 83, 0.12) inset;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  transition: transform 650ms var(--ease-silk), box-shadow 650ms var(--ease-silk);
+  isolation: isolate;
+}
+
+.glow-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.75) 38%, rgba(231,198,138,0.35) 44%, transparent 60%);
+  background-size: 250% 250%;
+  background-position: -120% -120%;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.glow-card:hover,
+.glow-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 70px -22px rgba(107, 70, 184, 0.45), 0 2px 0 0 rgba(207, 154, 83, 0.2) inset;
+}
+
+.glow-card:hover::before,
+.glow-card:focus-within::before {
+  opacity: 1;
+  background-position: 120% 120%;
+  transition: background-position 750ms var(--ease-silk), opacity 300ms ease;
+}
+
+/* ==========================================================================
+   Shimmer button
+   ========================================================================== */
+.shimmer-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 400ms var(--ease-silk), box-shadow 400ms var(--ease-silk);
+}
+
+.shimmer-btn--solid {
+  background: linear-gradient(135deg, #6b46b8, #3c2570);
+  color: #fff;
+  box-shadow: 0 12px 30px -12px rgba(60, 37, 112, 0.6);
+}
+
+.shimmer-btn--outline {
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--aimuse-purple-deep);
+  border: 1px solid rgba(107, 70, 184, 0.25);
+}
+
+.shimmer-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,0.55) 48%, rgba(255,255,255,0.55) 52%, transparent 70%);
+  transform: translateX(-130%);
+}
+
+.shimmer-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -12px rgba(60, 37, 112, 0.55);
+}
+
+.shimmer-btn:hover::after {
+  transform: translateX(130%);
+  transition: transform 900ms var(--ease-silk);
+}
+
+.shimmer-btn::after {
+  transition: transform 0ms;
+}
+
+/* ==========================================================================
+   Section reveal (IntersectionObserver driven)
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms var(--ease-silk), transform 700ms var(--ease-silk);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Modal overlay
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(36, 17, 65, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 380ms var(--ease-silk);
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
+}
+
+.modal-panel {
+  transform: scale(0.96);
+  opacity: 0;
+  transition: transform 400ms var(--ease-silk), opacity 400ms var(--ease-silk);
+}
+
+.modal-overlay.is-open .modal-panel {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Nav underline / active glow
+   ========================================================================== */
+.nav-link {
+  position: relative;
+  color: #4a3d70;
+}
+
+.nav-link__underline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--aimuse-purple), var(--aimuse-gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 450ms var(--ease-silk);
+}
+
+.nav-link.is-active .nav-link__underline {
+  transform: scaleX(1);
+}
+
+.nav-link__dot {
+  position: absolute;
+  bottom: -7px;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--aimuse-gold);
+  box-shadow: 0 0 6px 1px rgba(207, 154, 83, 0.8);
+  animation: none;
+  opacity: 0;
+}
+
+.nav-link.is-active .nav-link__dot {
+  opacity: 1;
+}
+
+@keyframes nav-dot-move {
+  0% { left: 0%; }
+  50% { left: 96%; }
+  100% { left: 0%; }
+}
+
+/* ==========================================================================
+   Breathing / floating / glow utilities
+   ========================================================================== */
+.breathing-glow {
+  animation: none;
+}
+@keyframes breathing-glow {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.06); }
+}
+
+.floating {
+  animation: floating 8s ease-in-out infinite;
+}
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating-slow {
+  animation: none;
+}
+
+.twinkle {
+  animation: none;
+}
+
+.spin-slow {
+  animation: none;
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+.spin-slow-reverse {
+  animation: none;
+}
+@keyframes spin-slow-reverse {
+  to { transform: rotate(-360deg); }
+}
+
+.soft-pulse {
+  animation: none;
+}
+@keyframes soft-pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+/* ==========================================================================
+   Reduced motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .aurora-bg__blob,
+  .aurora-bg__silk,
+  .aurora-bg__stars,
+  .light-ribbon__path,
+  .breathing-glow,
+  .floating,
+  .floating-slow,
+  .twinkle,
+  .spin-slow,
+  .spin-slow-reverse,
+  .soft-pulse,
+.nav-link__dot {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .glow-card,
+  .shimmer-btn,
+  .modal-overlay,
+  .modal-panel {
+    transition-duration: 150ms;
+  }
+  .shimmer-btn:hover::after {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Mobile: reduce animation intensity
+   ========================================================================== */
+@media (max-width: 767px) {
+  .aurora-bg__blob {
+    opacity: 0.35;
+  }
+  .aurora-bg__silk {
+    opacity: 0.3;
+  }
+  .light-ribbon {
+    opacity: 0.35;
+  }
+  .glow-card {
+    background: rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* ==========================================================================
+   Off-screen render skipping
+   This is a single long one-page site: every section (and every GlowCard /
+   animation inside it) is mounted in the DOM at once, so a section 6000px
+   down the page is still fully styled, painted and animated even though
+   nothing is visible. content-visibility lets the browser skip layout/paint
+   (and effectively pause animations) for sections currently off-screen,
+   which is the biggest lever for reducing whole-page CPU/GPU load on a page
+   like this. contain-intrinsic-size gives it a placeholder height so the
+   scrollbar/scroll position doesn't jump around as sections pop in and out.
+   ========================================================================== */
+.section-cv {
+  /* Keep every page in layout so anchor coordinates remain stable before and
+     after a page enters the viewport. */
+  content-visibility: visible;
+}
+
+.concept-page-bg {
+  background:
+    radial-gradient(circle at 68% 42%, rgba(213, 196, 244, 0.46) 0, rgba(213, 196, 244, 0.16) 30%, transparent 55%),
+    radial-gradient(circle at 16% 28%, rgba(255, 255, 255, 0.92) 0, transparent 42%),
+    linear-gradient(115deg, #fffdfd 0%, #fbf5fd 45%, #f2eafa 100%);
+}
+
+.concept-page-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.26;
+  background:
+    linear-gradient(155deg, transparent 25%, rgba(255, 255, 255, 0.72) 25.3%, transparent 26%),
+    linear-gradient(18deg, transparent 68%, rgba(255, 255, 255, 0.6) 68.3%, transparent 69%),
+    radial-gradient(ellipse at 92% 16%, transparent 0 30%, rgba(255, 255, 255, 0.62) 30.2%, transparent 31%);
+}
+
+.compare-side-icon::before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  width: 48px;
+  border-top: 1px dashed rgba(207, 154, 83, 0.7);
+}
+
+.feature-sweep {
+  animation: none !important;
+}
+
+.founder-art {
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 72%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 0%, #000 72%, transparent 100%);
+}
+
+.qr-frame {
+  border: 1px solid rgba(207, 154, 83, 0.55);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7) inset;
 }
