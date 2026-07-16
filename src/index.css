@@ -321,6 +321,61 @@ p {
   transition: transform 850ms var(--ease-silk);
 }
 
+.feature-person-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.feature-person-frame img {
+  display: block;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center center;
+}
+
+@media (min-width: 1280px) {
+  .feature-main-card > div {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 270px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    align-items: center;
+    gap: 0 1rem;
+  }
+
+  .feature-main-card > div > :nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .feature-main-card > div > :nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .feature-main-card:not(.feature-hair-card) > div > :nth-child(3) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin-top: 0;
+  }
+
+  .feature-hair-card > div > :nth-child(3),
+  .feature-hair-card > div > :nth-child(4),
+  .feature-hair-card > div > :nth-child(5),
+  .feature-hair-card > div > :nth-child(6) {
+    grid-column: 2;
+    margin-top: 0;
+  }
+
+  .feature-hair-card > div > :nth-child(3) { grid-row: 1; align-self: end; }
+  .feature-hair-card > div > :nth-child(4) { grid-row: 2; align-self: start; }
+  .feature-hair-card > div > :nth-child(5) { grid-row: 3; align-self: end; }
+  .feature-hair-card > div > :nth-child(6) { grid-row: 4; align-self: start; }
+}
+
 /* ========================================================================== 
    Shimmer button
    ========================================================================== */
