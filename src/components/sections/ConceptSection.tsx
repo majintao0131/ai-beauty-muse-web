@@ -23,6 +23,20 @@ const RIGHT_TAGS = [
   { label: '印象タイプ', icon: conceptImpression, tone: 'gold' as const },
 ]
 
+const LEFT_TAG_POSITIONS = [
+  'left-[50px] top-[84px] !w-[176px]',
+  'left-[25px] top-[218px] !w-[162px]',
+  'left-[5px] top-[340px] !w-[184px]',
+  'left-[15px] top-[455px] !w-[196px]',
+]
+
+const RIGHT_TAG_POSITIONS = [
+  'left-[625px] top-[120px] !w-[208px]',
+  'left-[640px] top-[250px] !w-[170px]',
+  'left-[655px] top-[380px] !w-[186px]',
+  'left-[605px] top-[500px] !w-[206px]',
+]
+
 export function ConceptSection() {
   return (
     <section id="concept" className="section-cv relative overflow-hidden py-10 md:py-12 xl:h-[calc(100svh-var(--header-height))] xl:min-h-[calc(100svh-var(--header-height))] xl:py-0">
@@ -47,13 +61,13 @@ export function ConceptSection() {
           </p>
         </SectionReveal>
 
-        <SectionReveal delay={150} className="relative h-[700px]">
+        <SectionReveal delay={150} className="relative h-[700px] xl:translate-x-[40px] xl:translate-y-[28px]">
           <img src={conceptKaka} alt="AIMUSE コンセプト" className="absolute left-1/2 top-[8px] h-[675px] w-auto -translate-x-1/2 object-contain drop-shadow-[0_30px_60px_rgba(107,70,184,0.2)]" loading="lazy" />
-          <div className="absolute left-[30px] top-[85px] flex flex-col gap-5">
-            {LEFT_TAGS.map((tag, i) => <TagChip key={tag.label} {...tag} className={['-ml-4', '-ml-10', '-ml-14', '-ml-8'][i]} />)}
+          <div className="pointer-events-none absolute inset-0 z-20">
+            {LEFT_TAGS.map((tag, i) => <TagChip key={tag.label} {...tag} className={`!absolute ${LEFT_TAG_POSITIONS[i]}`} />)}
           </div>
-          <div className="absolute right-[-30px] top-[119px] flex flex-col gap-5">
-            {RIGHT_TAGS.map((tag, i) => <TagChip key={tag.label} {...tag} className={['mr-0', 'mr-4', 'mr-0', 'mr-4'][i]} />)}
+          <div className="pointer-events-none absolute inset-0 z-20">
+            {RIGHT_TAGS.map((tag, i) => <TagChip key={tag.label} {...tag} className={`!absolute ${RIGHT_TAG_POSITIONS[i]}`} />)}
           </div>
         </SectionReveal>
       </div>
@@ -95,7 +109,7 @@ function TagChip({
   tone?: 'gold' | 'purple'
 }) {
   return (
-    <div className={`relative flex h-[84px] w-[190px] items-center gap-3 overflow-visible rounded-[1.15rem] border border-[var(--aimuse-gold)]/55 bg-transparent px-4 py-3 shadow-none ${compact ? 'h-auto w-auto justify-center' : ''} ${className ?? ''}`}>
+    <div className={`feature-chip relative flex h-[84px] w-[190px] items-center gap-3 overflow-visible rounded-[1.15rem] border border-[var(--aimuse-gold)]/55 bg-transparent px-4 py-3 shadow-none ${compact ? 'h-auto w-auto justify-center' : ''} ${className ?? ''}`}>
       <span className={`shrink-0 ${tone === 'purple' ? 'text-[var(--aimuse-purple)]' : 'text-[var(--aimuse-gold)]'}`}>
         <img src={Icon} alt="" className="h-9 w-9 object-contain" />
       </span>

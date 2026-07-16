@@ -281,7 +281,47 @@ p {
   transition: background-position 750ms var(--ease-silk), opacity 300ms ease;
 }
 
-/* ==========================================================================
+/* Feature chips: a subtle light sweep on hover keeps the astrology/beauty
+   inputs feeling like connected points in the KAKA orbit. */
+.feature-chip {
+  position: relative;
+  z-index: 20;
+  isolation: isolate;
+  overflow: hidden;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 420ms var(--ease-silk), box-shadow 420ms var(--ease-silk), border-color 420ms ease;
+}
+
+.feature-chip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 28%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0.78) 50%, rgba(231, 198, 138, 0.32) 57%, transparent 70%);
+  transform: translateX(-135%);
+}
+
+.feature-chip > * {
+  position: relative;
+  z-index: 1;
+}
+
+.feature-chip:hover,
+.feature-chip:focus-within {
+  transform: translateY(-3px);
+  border-color: rgba(207, 154, 83, 0.9);
+  box-shadow: 0 12px 28px -18px rgba(107, 70, 184, 0.65), 0 0 18px rgba(231, 198, 138, 0.22);
+}
+
+.feature-chip:hover::after,
+.feature-chip:focus-within::after {
+  transform: translateX(135%);
+  transition: transform 850ms var(--ease-silk);
+}
+
+/* ========================================================================== 
    Shimmer button
    ========================================================================== */
 .shimmer-btn {
