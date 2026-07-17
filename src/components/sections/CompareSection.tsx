@@ -1,15 +1,19 @@
-import compareBeforeAfter from '../../assets/images/compare-beforeafter.jpg'
-import compareGrid from '../../assets/images/compare-grid.jpg'
-import comparePhone from '../../assets/images/compare-phone.jpg'
-import logoTransparent from '../../assets/images/logo-transparent.png'
+import compareBeforeAfter from '../../assets/images/page6/compare-beforeafter.png'
+import compareGrid from '../../assets/images/page6/compare-beauty-grid.png'
+import comparePhone from '../../assets/images/page6/diagnosis-phone.png'
+import logoTransparent from '../../assets/images/page6/aimuse-mark.png'
+import iconFaceShape from '../../assets/images/page6/icon-face-shape.png'
+import iconAtmosphere from '../../assets/images/page6/icon-atmosphere.png'
+import iconColor from '../../assets/images/page6/icon-color.png'
+import iconLifestyle from '../../assets/images/page6/icon-lifestyle.png'
 import { GlowCard } from '../common/GlowCard'
 import { SectionReveal } from '../common/SectionReveal'
 
 const SIDE_ICONS = [
-  { label: '顔立ち', icon: IconFace },
-  { label: '雰囲気', icon: IconWave },
-  { label: '似合う色', icon: IconDots },
-  { label: 'ライフ\nスタイル', icon: IconBag },
+  { label: '顔立ち', image: iconFaceShape },
+  { label: '雰囲気', image: iconAtmosphere },
+  { label: '似合う色', image: iconColor },
+  { label: 'ライフ\nスタイル', image: iconLifestyle },
 ]
 
 export function CompareSection() {
@@ -40,8 +44,7 @@ export function CompareSection() {
           <div className="absolute right-[-1%] top-[68px] z-[5] flex flex-col gap-5">
             {SIDE_ICONS.map((s) => (
               <div key={s.label} className="compare-side-icon relative grid h-[78px] w-[78px] place-items-center rounded-full border border-[var(--aimuse-gold)]/70 bg-white/65 text-[var(--aimuse-purple)] shadow-[0_4px_18px_rgba(110,77,180,0.12)]">
-                <s.icon />
-                <span className="absolute top-[48px] whitespace-pre text-center text-[11px] leading-tight text-[var(--aimuse-deep-purple)]">{s.label}</span>
+                <img src={s.image} alt={s.label.replace('\n', ' ')} className="h-full w-full object-contain" loading="lazy" />
               </div>
             ))}
           </div>
@@ -114,37 +117,5 @@ function ListItem({ label, ok, gold }: { label: string; ok?: boolean; gold?: boo
       </span>
       {label}
     </li>
-  )
-}
-
-function IconFace() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <path d="M12 4c4 0 6 2.5 6 6.5 0 1-.2 2-.5 3M12 4c-4 0-6 2.5-6 6.5 0 4 2.5 8 6 8.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-    </svg>
-  )
-}
-function IconWave() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <path d="M4 10c2-2 4-2 6 0s4 2 6 0 4-2 6 0M4 15c2-2 4-2 6 0s4 2 6 0 4-2 6 0" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-    </svg>
-  )
-}
-function IconDots() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <circle cx="9" cy="9" r="3.2" stroke="currentColor" strokeWidth="1.1" />
-      <circle cx="15" cy="9" r="3.2" stroke="currentColor" strokeWidth="1.1" />
-      <circle cx="12" cy="15" r="3.2" stroke="currentColor" strokeWidth="1.1" />
-    </svg>
-  )
-}
-function IconBag() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <path d="M6 9h12l1 11H5L6 9z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
-      <path d="M9 9V7a3 3 0 016 0v2" stroke="currentColor" strokeWidth="1.2" />
-    </svg>
   )
 }
