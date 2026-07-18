@@ -30,7 +30,7 @@ export function CompareSection() {
             <div className="mt-5 h-px w-[300px] bg-[var(--aimuse-gold)]/50" />
           </SectionReveal>
 
-          <div className="absolute left-[2%] top-[226px] z-[3] grid grid-cols-[250px_30px_250px_30px_290px] items-center gap-0 min-[1400px]:top-[184px] min-[1400px]:grid-cols-[280px_38px_280px_38px_322px]">
+          <div className="absolute left-[2%] top-[250px] z-[3] grid grid-cols-[238px_44px_238px_44px_300px] items-center gap-0 min-[1400px]:top-[208px] min-[1400px]:grid-cols-[260px_48px_260px_48px_300px]">
             <ComparePanel compactDesktop title="普通のAI変身アプリ" subtitle="変身・画像生成体験" image={compareBeforeAfter} imageAlt="普通のAI変身アプリ" items={[['画像を生成できる', true], ['見た目の変化がわかる', true], ['似合う理由はわからない', false]]} />
             <VsBadge />
             <ComparePanel compactDesktop title="美容アプリ" subtitle="情報・美容コンテンツ体験" image={compareGrid} imageAlt="美容アプリ" items={[['情報が多い', true], ['流行・人気がわかる', true], ['似合う理由はわからない', false]]} />
@@ -38,19 +38,19 @@ export function CompareSection() {
             <ComparePanel compactDesktop gold title="AIMUSE" subtitle="理由から選び、行動につながる体験" image={logoTransparent} imageAlt="AIMUSE" items={[['似合う理由から納得して選べる', true], ['顔立ち・雰囲気・色を総合分析', true], ['商品・サロン・美容師選びに直結', true], ['自分らしく、自信を持って選べる', true]]} />
           </div>
 
-          <SectionReveal delay={300} className="absolute right-[3%] top-[30px] z-[4] min-[1400px]:right-[8%] min-[1400px]:top-[4px]">
-            <img src={comparePhone} alt="AIMUSE診断結果" className="w-[220px] drop-shadow-[0_25px_40px_rgba(60,37,112,0.3)] min-[1400px]:w-[260px]" loading="lazy" />
+          <SectionReveal delay={300} className="absolute right-[3%] top-[20px] z-[4] min-[1400px]:right-[8%] min-[1400px]:top-[12px]">
+            <img src={comparePhone} alt="AIMUSE診断結果" className="w-[300px] origin-top scale-y-[0.88] min-[1400px]:w-[320px] min-[1400px]:scale-y-[0.86]" loading="lazy" />
           </SectionReveal>
-          <div className="absolute right-[-1%] top-[68px] z-[5] flex flex-col gap-5">
+          <div className="absolute right-[-1%] top-[92px] z-[5] flex flex-col gap-5">
             {SIDE_ICONS.map((s) => (
-              <div key={s.label} className="compare-side-icon relative grid h-[78px] w-[78px] place-items-center rounded-full border border-[var(--aimuse-gold)]/70 bg-white/65 text-[var(--aimuse-purple)] shadow-[0_4px_18px_rgba(110,77,180,0.12)]">
+              <div key={s.label} className="compare-side-icon relative grid h-[88px] w-[88px] place-items-center rounded-full bg-transparent text-[var(--aimuse-purple)]">
                 <img src={s.image} alt={s.label.replace('\n', ' ')} className="h-full w-full object-contain" loading="lazy" />
               </div>
             ))}
           </div>
-          <SectionReveal delay={450} className="absolute inset-x-0 bottom-0 text-center text-[18px] leading-relaxed text-[var(--aimuse-deep-purple)]">
+          <p className="absolute inset-x-0 bottom-[10px] text-center text-[18px] leading-relaxed text-[var(--aimuse-deep-purple)]">
             AIMUSEは、「私だけに似合う」理由を読み解き、現実の選択につなげるAIビューティーミューズです。
-          </SectionReveal>
+          </p>
         </div>
 
         <div className="xl:hidden">
@@ -63,7 +63,7 @@ export function CompareSection() {
             <ComparePanel compact title="普通のAI変身アプリ" subtitle="変身・画像生成体験" image={compareBeforeAfter} imageAlt="普通のAI変身アプリ" items={[['画像を生成できる', true], ['見た目の変化がわかる', true], ['似合う理由はわからない', false]]} />
             <ComparePanel compact title="美容アプリ" subtitle="情報・美容コンテンツ体験" image={compareGrid} imageAlt="美容アプリ" items={[['情報が多い', true], ['流行・人気がわかる', true], ['似合う理由はわからない', false]]} />
             <ComparePanel compact gold title="AIMUSE" subtitle="理由から選び、行動につながる体験" image={logoTransparent} imageAlt="AIMUSE" items={[['似合う理由から納得して選べる', true], ['顔立ち・雰囲気・色を総合分析', true], ['商品・サロン・美容師選びに直結', true], ['自分らしく、自信を持って選べる', true]]} />
-            <img src={comparePhone} alt="AIMUSE診断結果" className="mx-auto w-[220px] drop-shadow-[0_25px_40px_rgba(60,37,112,0.3)]" loading="lazy" />
+            <img src={comparePhone} alt="AIMUSE診断結果" className="mx-auto w-[220px]" loading="lazy" />
           </div>
           <p className="mt-10 text-center text-[15px] leading-relaxed text-[var(--aimuse-deep-purple)]">AIMUSEは、「私だけに似合う」理由を読み解き、現実の選択につなげるAIビューティーミューズです。</p>
         </div>
