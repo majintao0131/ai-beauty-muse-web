@@ -15,19 +15,19 @@ const BOTTOM_ICONS = [
 export function ContactSection() {
   return (
     <section id="contact" className="section-cv relative overflow-hidden pb-16 pt-32 md:pb-20 md:pt-32 xl:h-[calc(100svh-var(--header-height))] xl:min-h-[calc(100svh-var(--header-height))] xl:py-0">
-      <div className="relative z-[1] mx-auto max-w-[1380px] px-6 md:px-8 xl:h-full">
+      <div className="relative z-[1] mx-auto max-w-[1440px] px-6 md:px-8 xl:px-8 xl:h-full">
         <div className="grid items-start gap-8 lg:grid-cols-[1fr_1.06fr] xl:gap-6 xl:pt-14">
-          <div className="pt-4 xl:pt-2">
+          <div className="pt-4 xl:pt-7">
             <SectionReveal>
               <p className="text-[14px] tracking-[0.12em] text-[var(--aimuse-gold)]">
                 <span className="mr-2 text-xl">✦</span>公式LINE / お問い合わせ
               </p>
-              <h2 className="mt-12 font-heading text-[42px] md:text-[56px] leading-none font-medium tracking-wide text-[var(--aimuse-deep-purple)] xl:mt-8">AIMUSEとつながる</h2>
-              <p className="mt-6 text-[14px] md:text-[15px] text-[#5c4f82] xl:mt-4">サービスは現在、正式公開に向けて準備中です。</p>
+              <h2 className="!mt-6 font-heading text-[42px] md:text-[60px] leading-none font-medium tracking-wide text-[var(--aimuse-deep-purple)]">AIMUSEとつながる</h2>
+              <p className="!mt-[30px] text-[14px] md:text-[15px] text-[#5c4f82]">サービスは現在、正式公開に向けて準備中です。</p>
             </SectionReveal>
 
             <SectionReveal delay={100}>
-              <GlowCard className="mt-14 min-h-[278px] rounded-[1.75rem] border border-white/80 bg-white/65 p-7 shadow-[0_24px_60px_-28px_rgba(107,70,184,0.38)] md:p-8 xl:mt-8 xl:p-7">
+              <GlowCard className="mt-14 min-h-[278px] rounded-[1.75rem] border border-white/80 bg-white/65 p-7 shadow-[0_24px_60px_-28px_rgba(107,70,184,0.38)] md:p-8 xl:mt-5 xl:p-7">
                 <div className="flex h-full items-center gap-7 md:gap-9">
                   <div className="qr-frame h-[190px] w-[190px] shrink-0 overflow-hidden rounded-2xl p-2">
                     <img src={contactQr} alt="AIMUSE 公式LINE QRコード" className="h-full w-full object-cover" loading="lazy" />
@@ -54,15 +54,15 @@ export function ContactSection() {
             </SectionReveal>
           </div>
 
-          <SectionReveal delay={140} className="relative min-h-[494px] xl:min-h-[484px]">
-            <GlowCard className="min-h-[494px] rounded-[1.75rem] border border-white/80 bg-white/62 p-8 pr-[230px] shadow-[0_24px_65px_-28px_rgba(107,70,184,0.4)] md:p-9 md:pr-[250px] xl:min-h-[484px] xl:p-7 xl:pr-[230px]">
+          <SectionReveal delay={140} className="relative min-h-[494px] xl:min-h-[494px]">
+            <GlowCard className="min-h-[494px] rounded-[1.75rem] border border-white/80 bg-white/62 p-8 pr-[230px] shadow-[0_24px_65px_-28px_rgba(107,70,184,0.4)] md:p-9 md:pr-[250px] xl:min-h-[494px] xl:p-7 xl:pr-[230px] xl:pt-10">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--aimuse-purple)] px-4 py-2 text-[13px] text-white shadow-[0_8px_18px_rgba(107,70,184,0.28)]">
                 ✦ Private Beta
               </span>
-              <h3 className="mt-10 whitespace-nowrap font-heading text-[27px] md:text-[31px] font-medium text-[var(--aimuse-deep-purple)] xl:mt-7">正式公開に向けて準備中</h3>
-              <p className="mt-4 text-[14px] text-[#6a5d90] xl:mt-3">最新情報は公式LINE・SNSでお知らせします。</p>
+              <h3 className="!mt-10 whitespace-nowrap font-heading text-[27px] md:text-[31px] font-medium text-[var(--aimuse-deep-purple)]">正式公開に向けて準備中</h3>
+              <p className="!mt-4 text-[14px] text-[#6a5d90]">最新情報は公式LINE・SNSでお知らせします。</p>
 
-              <div className="mt-7 flex flex-col gap-4 xl:mt-5 xl:gap-3">
+              <div className="mt-7 flex flex-col gap-4 xl:mt-10 xl:gap-3">
                 <StoreButton icon={<AppleIcon />} title="App Store" subtitle="近日公開予定" />
                 <StoreButton icon={<PlayIcon />} title="Google Play" subtitle="近日公開予定" />
               </div>
@@ -76,7 +76,7 @@ export function ContactSection() {
               </div>
             </GlowCard>
 
-            <div className="absolute right-3 top-7 hidden lg:block">
+            <div className="absolute right-3 top-7 hidden lg:block xl:top-5 xl:right-[24px]">
               <img src={contactPhone} alt="AIMUSEアプリ" className="relative w-[200px] xl:w-[210px]" loading="lazy" />
             </div>
             <div className="mt-8 flex justify-center lg:hidden">
@@ -85,23 +85,23 @@ export function ContactSection() {
           </SectionReveal>
         </div>
 
-        <SectionReveal delay={300} className="relative left-1/2 mt-10 w-screen -translate-x-1/2 border-y border-white/70 bg-white/18 px-6 py-6 md:mt-9 md:px-8 md:py-5 xl:mt-6 xl:py-3">
-          <div className="mx-auto grid max-w-[1240px] grid-cols-2 md:grid-cols-4">
+        <SectionReveal delay={300} className="relative left-1/2 mt-10 w-screen -translate-x-1/2 border-y border-white/70 bg-white/18 px-6 py-6 md:mt-9 md:px-8 md:py-5 xl:mt-8 xl:py-3">
+          <div className="mx-auto grid max-w-[1320px] grid-cols-2 md:grid-cols-4">
             {BOTTOM_ICONS.map((b) => (
-              <div key={b.label} className="flex items-center justify-center gap-3 border-b border-[var(--aimuse-purple)]/15 px-3 py-4 last:border-b-0 md:border-b-0 md:border-r md:py-2 md:last:border-r-0 xl:gap-2">
-                <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[var(--aimuse-gold)]/60 bg-white/55 text-[var(--aimuse-purple)] [&>svg]:h-6 [&>svg]:w-6 md:h-[72px] md:w-[72px] xl:h-16 xl:w-16">
+              <div key={b.label} className="flex items-center justify-center gap-3 border-b border-[var(--aimuse-purple)]/15 px-3 py-4 last:border-b-0 md:border-b-0 md:border-r md:py-2 md:last:border-r-0 xl:justify-start xl:gap-4 xl:px-8">
+                <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full border border-[var(--aimuse-gold)]/60 bg-white/55 text-[var(--aimuse-purple)] [&>svg]:h-6 [&>svg]:w-6 md:h-[72px] md:w-[72px] xl:h-[72px] xl:w-[72px] xl:[&>svg]:h-8 xl:[&>svg]:w-8">
                   <b.icon />
                 </span>
                 <span>
-                  <span className="block text-[13px] font-medium text-[var(--aimuse-deep-purple)]">{b.label}</span>
-                  <span className="mt-1 block text-[11px] text-[#8577a8]">{b.desc}</span>
+                  <span className="block text-[13px] font-medium text-[var(--aimuse-deep-purple)] xl:text-[15px]">{b.label}</span>
+                  <span className="mt-1 block text-[11px] text-[#8577a8] xl:text-[12px]">{b.desc}</span>
                 </span>
               </div>
             ))}
           </div>
         </SectionReveal>
 
-        <SectionReveal delay={380} className="border-b border-white/60 py-7 text-center text-[13px] text-[#6a5d90] xl:py-3">
+        <SectionReveal delay={380} className="border-b border-white/60 py-7 text-center text-[13px] text-[#6a5d90] xl:pb-3 xl:pt-7">
           <span className="mr-3 text-[var(--aimuse-gold)]">✦</span>AIMUSEは、正式公開に向けて準備を進めています。最新情報は公式LINEとSNSでお知らせします。<span className="ml-3 text-[var(--aimuse-gold)]">✦</span>
         </SectionReveal>
 
@@ -142,9 +142,9 @@ function SocialIcon({ label, children }: { label: string; children: ReactNode })
 
 function IconLine() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <rect x="3" y="5" width="18" height="13" rx="4" stroke="currentColor" strokeWidth="1.2" />
-      <path d="M8 15V9M8 15l3-6M11 15V9M14 15V9h3.5M14 12h3" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <path d="M4 6.5c0-2 1.8-3.5 4-3.5h12c2.2 0 4 1.5 4 3.5v8c0 2-1.8 3.5-4 3.5h-6.5L9 21v-3H8c-2.2 0-4-1.5-4-3.5v-8z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+      <text x="14" y="12.8" textAnchor="middle" fontSize="5.2" fontWeight="600" fill="currentColor">LINE</text>
     </svg>
   )
 }
@@ -163,11 +163,13 @@ function IconMail() {
 }
 function IconShare() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <circle cx="6" cy="12" r="2.4" stroke="currentColor" strokeWidth="1.2" />
-      <circle cx="17" cy="6" r="2.4" stroke="currentColor" strokeWidth="1.2" />
-      <circle cx="17" cy="18" r="2.4" stroke="currentColor" strokeWidth="1.2" />
-      <path d="M8.2 10.8L14.8 7.2M8.2 13.2l6.6 3.6" stroke="currentColor" strokeWidth="1.1" />
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <text x="3" y="16" fontSize="9" fontFamily="Arial, sans-serif" fill="currentColor">X</text>
+      <rect x="12" y="8" width="7" height="7" rx="2" stroke="currentColor" strokeWidth="1.1" />
+      <circle cx="15.5" cy="11.5" r="1.6" stroke="currentColor" strokeWidth="1" />
+      <circle cx="17.2" cy="9.8" r="0.6" fill="currentColor" />
+      <rect x="21" y="10" width="6" height="5" rx="1.5" stroke="currentColor" strokeWidth="1.1" />
+      <path d="M23.3 11.2l2.3 1.3-2.3 1.3v-2.6z" fill="currentColor" />
     </svg>
   )
 }

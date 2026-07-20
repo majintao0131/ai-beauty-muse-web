@@ -6,8 +6,8 @@ import { SectionReveal } from '../common/SectionReveal'
 
 export function FoundersSection() {
   return (
-    <section id="founders" className="section-cv relative py-20 md:py-28 xl:py-0">
-      <div className="mx-auto max-w-[1360px] px-6 md:px-10">
+    <section id="founders" className="founders-section section-cv relative overflow-hidden py-20 md:py-28 xl:py-0">
+      <div className="relative z-[1] mx-auto max-w-[1350px] px-6 md:px-10 xl:px-0 xl:pt-4">
         <SectionReveal className="text-center">
           <h2 className="font-heading text-[38px] md:text-[52px] leading-none font-medium text-[var(--aimuse-deep-purple)]">
             <span className="mr-5 text-[var(--aimuse-gold)]">✦</span>
@@ -22,7 +22,7 @@ export function FoundersSection() {
           </div>
         </SectionReveal>
 
-        <div className="mt-12 md:mt-14 relative grid md:grid-cols-2 gap-8 xl:mt-8 xl:gap-[9vw]">
+        <div className="mt-12 md:mt-14 relative grid md:grid-cols-2 gap-8 xl:mt-5 xl:gap-[11.5vw]">
           <FounderCard
             delay={0}
             name="Huo Huo"
@@ -58,7 +58,7 @@ export function FoundersSection() {
             ]}
           />
 
-          <span aria-hidden="true" className="founder-cross hidden md:grid place-items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[43%] w-[170px] h-[170px] rounded-full border border-dashed border-[var(--aimuse-gold)]/45 text-[var(--aimuse-gold)] text-[52px] font-light z-10">
+          <span aria-hidden="true" className="founder-cross hidden md:grid place-items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[60%] w-[170px] h-[170px] rounded-full border border-dashed border-[var(--aimuse-gold)]/45 text-[var(--aimuse-gold)] text-[52px] font-light z-10">
             ×
           </span>
         </div>
@@ -92,23 +92,23 @@ function FounderCard({
 }) {
   return (
     <SectionReveal delay={delay}>
-      <GlowCard className="relative min-h-[520px] overflow-hidden rounded-[2rem] bg-white/68 ring-1 ring-white/80 shadow-[0_25px_70px_-30px_rgba(107,70,184,0.42)]">
-        <div className="relative h-[520px]">
+      <GlowCard className="relative min-h-[508px] overflow-hidden rounded-[2rem] bg-white/68 ring-1 ring-white/80 shadow-[0_25px_70px_-30px_rgba(107,70,184,0.42)]">
+        <div className="relative h-[508px]">
           <img
             src={image}
             alt=""
             aria-hidden="true"
-            className="founder-art pointer-events-none absolute bottom-0 left-[-14px] z-0 h-[536px] w-auto max-w-[58%] select-none object-contain object-left mix-blend-multiply opacity-90"
+            className="founder-art pointer-events-none absolute bottom-[4px] left-[-14px] z-0 h-[500px] w-auto max-w-[58%] select-none object-contain object-left mix-blend-multiply opacity-90"
             loading="lazy"
             draggable={false}
           />
 
-          <div className="relative z-[2] ml-auto mr-[7%] flex w-[47%] flex-col pt-9">
+          <div className={`relative z-[2] ml-auto flex flex-col pt-9 ${mirrored ? 'mr-[13%] w-[47%]' : 'mr-[7%] w-[40%]'}`}>
           <div className={`flex items-start gap-3 ${mirrored ? 'flex-row' : 'justify-between'}`}>
             {mirrored && <FounderHex symbol={symbol} />}
             <div className="min-w-0">
-              <h3 className="font-display text-[30px] md:text-[36px] leading-none tracking-wide text-[var(--aimuse-purple-deep)]">{name}</h3>
-              <div className="mt-3 flex flex-col gap-1 text-[13px] md:text-[15px] leading-tight text-[var(--aimuse-purple-deep)]">{role}</div>
+              <h3 className="font-display text-[30px] md:text-[40px] leading-none tracking-wide text-[var(--aimuse-purple-deep)]">{name}</h3>
+              <div className="mt-3 flex flex-col gap-1 text-[13px] md:text-[17px] leading-tight text-[var(--aimuse-purple-deep)]">{role}</div>
             </div>
             {!mirrored && <FounderHex symbol={symbol} />}
           </div>
@@ -119,12 +119,12 @@ function FounderCard({
             <span className="h-px flex-1 bg-current opacity-50" />
           </div>
 
-          <div className="mt-6 space-y-5 text-[12px] md:text-[13px] leading-[1.9] text-[var(--aimuse-deep-purple)]">
+          <div className="mt-6 space-y-6 text-[12px] md:text-[14px] leading-[1.8] text-[var(--aimuse-deep-purple)]">
             {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>
           </div>
 
-          <div className="absolute inset-x-[7%] bottom-8 z-[2] grid grid-cols-3 divide-x divide-[var(--aimuse-purple)]/20">
+          <div className="absolute inset-x-[7%] bottom-[40px] z-[2] grid grid-cols-3 divide-x divide-[var(--aimuse-purple)]/20">
             {capabilities.map(([label, icon]) => (
               <FounderCapability key={label} label={label} icon={icon} />
             ))}
@@ -137,7 +137,7 @@ function FounderCard({
 
 function FounderHex({ symbol }: { symbol: string }) {
   return (
-    <span className="grid h-11 w-11 shrink-0 place-items-center border border-[var(--aimuse-gold)]/70 text-[12px] text-[var(--aimuse-purple-deep)]" style={{ clipPath: 'polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)' }}>
+    <span className="grid h-14 w-14 shrink-0 place-items-center border border-[var(--aimuse-gold)]/70 text-[15px] text-[var(--aimuse-purple-deep)]" style={{ clipPath: 'polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)' }}>
       {symbol}
     </span>
   )
@@ -146,8 +146,8 @@ function FounderHex({ symbol }: { symbol: string }) {
 function FounderCapability({ label, icon }: { label: string; icon: ReactNode }) {
   return (
     <div className="flex min-w-0 items-center justify-center gap-2 px-2 text-[var(--aimuse-purple-deep)] md:gap-3 md:px-3">
-      <span className="shrink-0 text-[var(--aimuse-purple)]">{icon}</span>
-      <span className="text-[10px] md:text-[12px] leading-[1.35]">{label.split(' ').map((word, index) => <span key={`${word}-${index}`} className="block">{word}{index < label.split(' ').length - 1 ? ' ' : ''}</span>)}</span>
+      <span className="shrink-0 text-[var(--aimuse-purple)] [&>svg]:h-8 [&>svg]:w-8">{icon}</span>
+      <span className="text-[10px] md:text-[15px] leading-[1.35]">{label.split(' ').map((word, index) => <span key={`${word}-${index}`} className="block">{word}{index < label.split(' ').length - 1 ? ' ' : ''}</span>)}</span>
     </div>
   )
 }

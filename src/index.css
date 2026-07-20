@@ -84,15 +84,29 @@ main > section#home {
    identical so the page navigator always lands on the same visual baseline;
    individual sections use xl-specific spacing to keep their contents inside
    this viewport. */
-@media (min-width: 1280px) {
+@media (min-width: 768px) {
+  :root {
+    /* 1440×860 is the desktop composition reference. Scale each slide from
+       that canvas so shorter or narrower desktop windows keep one complete
+       page in view without exposing adjacent sections. */
+    --desktop-page-scale: min(1, calc(100vw / 1440px), calc((100svh - var(--header-height)) / 784px));
+  }
+
   main > section {
-    height: calc(100svh - var(--header-height));
-    min-height: calc(100svh - var(--header-height));
+    /* Zoom the complete slide, including its background and pseudo-elements.
+       The unzoomed canvas is enlarged by the inverse factor so the visual
+       result still occupies exactly one viewport instead of leaving a gap. */
+    width: calc(100% / var(--desktop-page-scale));
+    height: calc((100svh - var(--header-height)) / var(--desktop-page-scale));
+    min-height: calc((100svh - var(--header-height)) / var(--desktop-page-scale));
+    margin-inline: auto;
+    overflow: hidden;
+    zoom: var(--desktop-page-scale);
   }
 
   main > section#home {
-    height: 100svh;
-    min-height: 100svh;
+    height: calc(100svh / var(--desktop-page-scale));
+    min-height: calc(100svh / var(--desktop-page-scale));
   }
 }
 
@@ -786,6 +800,20 @@ p {
 .founder-art {
   -webkit-mask-image: linear-gradient(to right, #000 0%, #000 72%, transparent 100%);
   mask-image: linear-gradient(to right, #000 0%, #000 72%, transparent 100%);
+}
+
+.founders-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.72;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.72), transparent 42%),
+    linear-gradient(122deg, transparent 18%, rgba(255, 255, 255, 0.46) 32%, transparent 45%),
+    linear-gradient(34deg, transparent 60%, rgba(255, 255, 255, 0.42) 76%, transparent 90%),
+    radial-gradient(circle at 8% 18%, rgba(168, 130, 255, 0.18), transparent 30%),
+    radial-gradient(circle at 93% 74%, rgba(207, 154, 83, 0.12), transparent 26%);
 }
 
 .qr-frame {

@@ -29,12 +29,12 @@ export function Hero({ onDownloadClick }: { onDownloadClick: () => void }) {
             </span>
             を、私に。
           </h1>
-          <p className="mt-6 text-[17px] md:text-[19px] leading-[1.9] text-[#463a6b]">
+          <p className="mt-6 text-left text-[21px] md:text-[23px] leading-[1.9] text-[#463a6b]">
             誰にでも似合う美しさではなく、
             <br />
             私だけに似合う美しさを。
           </p>
-          <p className="mt-5 text-[14px] md:text-[15px] leading-[1.9] text-[#6a5d90] max-w-[460px]">
+          <p className="mt-5 text-[14px] md:text-[15px] leading-[1.5] text-[#6a5d90] max-w-[460px]">
             AIMUSEは、運勢、顔立ち・骨格、雰囲気、スタイルをもとに、あなたがもっと自分らしく、美しくなるための選択をサポートします。
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">

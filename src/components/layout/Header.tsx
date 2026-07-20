@@ -34,12 +34,12 @@ export function Header({ onDownloadClick }: HeaderProps) {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled ? 'bg-white/85 shadow-[0_8px_32px_-16px_rgba(107,70,184,0.25)]' : 'bg-white/70'
+        scrolled ? 'bg-white shadow-[0_8px_32px_-16px_rgba(107,70,184,0.25)]' : 'bg-white'
       }`}
     >
-      <div className="mx-auto max-w-[1360px] px-6 md:px-10 h-[64px] md:h-[76px] flex items-center justify-between">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-8 xl:px-4 h-[64px] md:h-[76px] flex items-center justify-between">
         <button onClick={() => handleNavClick('home')} className="cursor-pointer shrink-0">
-          <img src="/logo.png" alt="AIMUSE" className="h-8 md:h-9 w-auto object-contain" draggable={false} />
+          <img src="/logo.png" alt="AIMUSE" className="h-8 md:h-14 w-auto object-contain" draggable={false} />
         </button>
 
         <nav className="hidden md:flex items-center gap-10">

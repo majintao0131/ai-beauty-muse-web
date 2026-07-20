@@ -1,7 +1,6 @@
-import whyCard1 from '../../assets/images/why-card1.jpg'
-import whyCard2 from '../../assets/images/why-card2.jpg'
-import whyCard3 from '../../assets/images/why-card3.jpg'
-import { GlowCard } from '../common/GlowCard'
+import whyCard1 from '../../assets/images/page2/why-card-01-height@4x.png'
+import whyCard2 from '../../assets/images/page2/why-card-02-height@4x.png'
+import whyCard3 from '../../assets/images/page2/why-card-03-height@4x.png'
 import { SectionReveal } from '../common/SectionReveal'
 
 const CARDS = [
@@ -18,17 +17,12 @@ export function WhySection() {
           なぜ、私には「似合う」がわからないの？
         </SectionReveal>
 
-        <div className="mt-8 md:mt-9 grid md:grid-cols-3 gap-4 md:gap-5 xl:gap-6">
+        <div className="mt-8 md:mt-9 flex flex-wrap items-start justify-center gap-3 md:gap-4 xl:mt-4 xl:gap-2">
           {CARDS.map((card, i) => (
             <SectionReveal key={card.no} delay={i * 140}>
-              <GlowCard className="h-full flex flex-col p-5 md:p-6 xl:p-6">
-                <span className="font-display text-[30px] leading-none text-[var(--aimuse-gold)]">{card.no}<span className="ml-1 text-[18px]">✦</span></span>
-                <h3 className="mt-2 text-[21px] md:text-[22px] xl:text-[23px] font-medium leading-tight text-[var(--aimuse-deep-purple)]">{card.title}</h3>
-                <p className="mt-2 text-[13px] xl:text-[12px] leading-[1.7] text-[#6a5d90] min-h-[42px]">{card.desc}</p>
-                <div className="mt-4 rounded-2xl overflow-hidden ring-1 ring-white/60">
-                  <img src={card.img} alt={card.title} className="w-full h-[300px] md:h-[300px] xl:h-[342px] object-cover" loading="lazy" />
-                </div>
-              </GlowCard>
+              <div className="group flex h-[380px] w-fit cursor-pointer items-center justify-center transition-transform duration-500 ease-out hover:-translate-y-1 xl:h-[460px]">
+                <img src={card.img} alt={card.title} className="block h-full w-auto max-w-full object-contain transition-[filter,transform] duration-500 ease-out group-hover:scale-[1.025] group-hover:drop-shadow-[0_18px_28px_rgba(107,70,184,0.28)] xl:max-w-none" loading="lazy" />
+              </div>
             </SectionReveal>
           ))}
         </div>
